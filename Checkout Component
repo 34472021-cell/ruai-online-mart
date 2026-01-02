@@ -1,0 +1,44 @@
+import { useState } from "react";
+import { useCart } from "../context/CartContext";
+
+const Checkout = ({ onComplete }) => {
+  const { cart, clearCart } = useCart();
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
+
+  const handleSubmit = () => {
+    if (!phone || !location) return alert("Fill all fields");
+
+    clearCart();
+    onComplete();
+  };
+
+  return (
+    <div>
+      <h2 className="text-xl font-bold mb-3">Checkout</h2>
+
+      <input
+        placeholder="M-Pesa Number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        className="border p-2 w-full mb-2"
+      />
+
+      <input
+        placeholder="Delivery Location"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+        className="border p-2 w-full mb-4"
+      />
+
+      <button
+        onClick={handleSubmit}
+        className="bg-black text-white py-2 w-full rounded"
+      >
+        Place Order
+      </button>
+    </div>
+  );
+};
+
+export default Checkout;
