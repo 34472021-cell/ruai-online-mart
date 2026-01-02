@@ -1,0 +1,17 @@
+import ProductCard from "../components/ProductCard";
+import Cart from "../components/Cart";
+
+const Shop = ({ products, onCheckout }) => {
+  return (
+    <div className="grid md:grid-cols-3 gap-6">
+      <div className="md:col-span-2 grid grid-cols-2 gap-4">
+        {products.map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))}
+      </div>
+      <Cart onCheckout={onCheckout} />
+    </div>
+  );
+};
+
+export default Shop;
